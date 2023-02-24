@@ -8,5 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="gray">#2C2C2C</color>
-    <color name="clickable">#8A8989</color>
+    <color name="clickable">#202020</color>
 </resources>
