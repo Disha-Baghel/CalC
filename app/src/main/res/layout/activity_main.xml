@@ -138,7 +138,7 @@
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:background="@drawable/button_shapes"
-                android:text="X"
+                android:text="x"
                 android:textColor="@color/white" />
         </LinearLayout>
 
