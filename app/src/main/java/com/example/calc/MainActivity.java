@@ -13,7 +13,7 @@ public class MainActivity extends AppCompatActivity {
     ListView listView1, listView2;
     TextView calc, result;
     String b00, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9;
-    String bMod, bDivide, bX, bMinus, bPlus, bPoint;
+    String bMod, bDivide, bX, bMinus, bPlus, bPoint, bClear;
     Button btnAC, btnClear, btnMod, btnDivide, btnX, btnMinus, btnPlus, btnPoint, btnResult;
     Button btn00, btn0, btn1, btn2, btn3, btn4, btn5, btn6, btn7, btn8, btn9;
 
@@ -55,7 +55,7 @@ public class MainActivity extends AppCompatActivity {
         btnAC.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                allclear();
+                all_clear();
             }
         });
         btn00.setOnClickListener(new View.OnClickListener() {
@@ -139,35 +139,35 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 bMod = btnMod.getText().toString();
-                result.append(" "+bMod+" ");
+                result.append(bMod);
             }
         });
         btnDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bDivide = btnDivide.getText().toString();
-                result.append(" "+bDivide+" ");
+                result.append(bDivide);
             }
         });
         btnX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bX = btnX.getText().toString();
-                result.append(" "+bX+" ");
+                result.append(bX);
             }
         });
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bMinus = btnMinus.getText().toString();
-                result.append(" "+bMinus+" ");
+                result.append(bMinus);
             }
         });
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bPlus = btnPlus.getText().toString();
-                result.append(" "+bPlus+" ");
+                result.append(bPlus);
             }
         });
         btnPoint.setOnClickListener(new View.OnClickListener() {
@@ -180,14 +180,18 @@ public class MainActivity extends AppCompatActivity {
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                if(result.getText().toString().length() == 0){
+                    result.setText("");
+                }
+                else {
+                    bClear = result.getText().toString().substring(0, result.getText().toString().length() - 1);
+                    result.setText(bClear);
+                }
             }
         });
     }
 
-    public void allclear(){
-        result.setText("0");
+    public void all_clear(){
+        result.setText("");
     }
-
-
 }
