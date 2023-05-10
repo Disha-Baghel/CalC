@@ -13,8 +13,9 @@ import java.util.Stack;
 public class MainActivity extends AppCompatActivity{
     Operations operation = new Operations();
     Stack<Integer> stack = new Stack<Integer>();
+    Operations operations = new Operations();
     ListView listView1, listView2;
-    TextView calc, result;
+    TextView calc, expression, result;
     String b00, b0, b1, b2, b3, b4, b5, b6, b7, b8, b9;
     String bMod, bDivide, bX, bMinus, bPlus, bPoint, bClear;
     Button btnAC, btnClear, btnMod, btnDivide, btnX, btnMinus, btnPlus, btnPoint, btnResult;
@@ -31,7 +32,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     private void init(){
-        result = findViewById(R.id.result);
+        expression = findViewById(R.id.expression);
         btn00 = findViewById(R.id.btn00);
         btn0 = findViewById(R.id.btn0);
         btn1 = findViewById(R.id.btn1);
@@ -65,147 +66,131 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void onClick(View v) {
                 b00 = btn00.getText().toString();
-                result.append(b00);
-                stack.push(Integer.parseInt(btn00.getText().toString()));
+                expression.append(b00);
             }
         });
         btn0.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b0 = btn0.getText().toString();
-                result.append(b0);
-                stack.push(Integer.parseInt(btn0.getText().toString()));
+                expression.append(b0);
             }
         });
         btn1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b1 = btn1.getText().toString();
-                result.append(b1);
-                stack.push(Integer.parseInt(btn1.getText().toString()));
+                expression.append(b1);
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b2 = btn2.getText().toString();
-                result.append(b2);
-                stack.push(Integer.parseInt(btn2.getText().toString()));
+                expression.append(b2);
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b3 = btn3.getText().toString();
-                result.append(b3);
-                stack.push(Integer.parseInt(btn3.getText().toString()));
+                expression.append(b3);
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b4 = btn4.getText().toString();
-                result.append(b4);
-                stack.push(Integer.parseInt(btn4.getText().toString()));
+                expression.append(b4);
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b5 = btn5.getText().toString();
-                result.append(b5);
-                stack.push(Integer.parseInt(btn5.getText().toString()));
+                expression.append(b5);
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b6 = btn6.getText().toString();
-                result.append(b6);
-                stack.push(Integer.parseInt(btn6.getText().toString()));
+                expression.append(b6);
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b7 = btn7.getText().toString();
-                result.append(b7);
-                stack.push(Integer.parseInt(btn7.getText().toString()));
+                expression.append(b7);
             }
         });
         btn8.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b8 = btn8.getText().toString();
-                result.append(b8);
-                stack.push(Integer.parseInt(btn8.getText().toString()));
+                expression.append(b8);
             }
         });
         btn9.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 b9 = btn9.getText().toString();
-                result.append(b9);
-                stack.push(Integer.parseInt(btn9.getText().toString()));
+                expression.append(b9);
             }
         });
         btnMod.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bMod = btnMod.getText().toString();
-                result.append(bMod);
-                stack.push(Integer.parseInt(btnMod.getText().toString()));
+                expression.append(bMod);
             }
         });
         btnDivide.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bDivide = btnDivide.getText().toString();
-                result.append(bDivide);
-                stack.push(Integer.parseInt(btn00.getText().toString()));
+                expression.append(bDivide);
+                //stack.push(Integer.parseInt(btn00.getText().toString()));
             }
         });
         btnX.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bX = btnX.getText().toString();
-                result.append(bX);
-                stack.push(Integer.parseInt(btn00.getText().toString()));
+                expression.append(bX);
             }
         });
         btnMinus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bMinus = btnMinus.getText().toString();
-                result.append(bMinus);
-                stack.push(Integer.parseInt(btn00.getText().toString()));
+                expression.append(bMinus);
             }
         });
         btnPlus.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bPlus = btnPlus.getText().toString();
-                result.append(bPlus);
-                stack.push(Integer.parseInt(btn00.getText().toString()));
+                expression.append(bPlus);
             }
         });
         btnPoint.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 bPoint = btnPoint.getText().toString();
-                result.append(bPoint);
-                stack.push(Integer.parseInt(btn00.getText().toString()));
+                expression.append(bPoint);
             }
         });
         btnClear.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(result.getText().toString().length() == 0){
-                    result.setText("");
+                if(expression.getText().toString().length() == 0){
+                    expression.setText("");
                 }
                 else {
-                    bClear = result.getText().toString().substring(0, result.getText().toString().length() - 1);
-                    result.setText(bClear);
+                    bClear =expression.getText().toString().substring(0, expression.getText().toString().length() - 1);
+                    expression.setText(bClear);
                 }
             }
         });
@@ -218,7 +203,7 @@ public class MainActivity extends AppCompatActivity{
     }
 
     public void all_clear(){
-        result.setText("");
+        expression.setText("");
     }
 
     public void result(){
