@@ -1,5 +1,7 @@
 package com.example.calc;
 
+import static android.util.TypedValue.COMPLEX_UNIT_PX;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
@@ -67,6 +69,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b00 = btn00.getText().toString();
                 expression.append(b00);
+                check();
             }
         });
         btn0.setOnClickListener(new View.OnClickListener() {
@@ -74,6 +77,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b0 = btn0.getText().toString();
                 expression.append(b0);
+                check();
             }
         });
         btn1.setOnClickListener(new View.OnClickListener() {
@@ -81,6 +85,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b1 = btn1.getText().toString();
                 expression.append(b1);
+                check();
             }
         });
         btn2.setOnClickListener(new View.OnClickListener() {
@@ -88,6 +93,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b2 = btn2.getText().toString();
                 expression.append(b2);
+                check();
             }
         });
         btn3.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +101,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b3 = btn3.getText().toString();
                 expression.append(b3);
+                check();
             }
         });
         btn4.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +109,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b4 = btn4.getText().toString();
                 expression.append(b4);
+                check();
             }
         });
         btn5.setOnClickListener(new View.OnClickListener() {
@@ -109,6 +117,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b5 = btn5.getText().toString();
                 expression.append(b5);
+                check();
             }
         });
         btn6.setOnClickListener(new View.OnClickListener() {
@@ -116,6 +125,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b6 = btn6.getText().toString();
                 expression.append(b6);
+                check();
             }
         });
         btn7.setOnClickListener(new View.OnClickListener() {
@@ -123,6 +133,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b7 = btn7.getText().toString();
                 expression.append(b7);
+                check();
             }
         });
         btn8.setOnClickListener(new View.OnClickListener() {
@@ -130,6 +141,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b8 = btn8.getText().toString();
                 expression.append(b8);
+                check();
             }
         });
         btn9.setOnClickListener(new View.OnClickListener() {
@@ -137,6 +149,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 b9 = btn9.getText().toString();
                 expression.append(b9);
+                check();
             }
         });
         btnMod.setOnClickListener(new View.OnClickListener() {
@@ -144,6 +157,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 bMod = btnMod.getText().toString();
                 expression.append(bMod);
+                check();
             }
         });
         btnDivide.setOnClickListener(new View.OnClickListener() {
@@ -151,6 +165,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 bDivide = btnDivide.getText().toString();
                 expression.append(bDivide);
+                check();
                 //stack.push(Integer.parseInt(btn00.getText().toString()));
             }
         });
@@ -159,6 +174,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 bX = btnX.getText().toString();
                 expression.append(bX);
+                check();
             }
         });
         btnMinus.setOnClickListener(new View.OnClickListener() {
@@ -166,6 +182,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 bMinus = btnMinus.getText().toString();
                 expression.append(bMinus);
+                check();
             }
         });
         btnPlus.setOnClickListener(new View.OnClickListener() {
@@ -173,6 +190,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 bPlus = btnPlus.getText().toString();
                 expression.append(bPlus);
+                check();
             }
         });
         btnPoint.setOnClickListener(new View.OnClickListener() {
@@ -180,6 +198,7 @@ public class MainActivity extends AppCompatActivity{
             public void onClick(View v) {
                 bPoint = btnPoint.getText().toString();
                 expression.append(bPoint);
+                check();
             }
         });
         btnClear.setOnClickListener(new View.OnClickListener() {
@@ -204,13 +223,15 @@ public class MainActivity extends AppCompatActivity{
 
     public void all_clear(){
         expression.setText("");
+        expression.setTextSize(50);
     }
 
-    public void result(){
-        check();
-    }
+    public void result(){}
 
     public void check(){
-
+        if(expression.getText().length()>=14){
+//            expression.setTextSize(getResources().getDimension(R.dimen.textsize));
+            expression.setTextSize(40);
+        }
     }
 }
