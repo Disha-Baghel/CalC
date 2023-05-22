@@ -11,4 +11,19 @@ public class Operations implements Mathematical_operations{
     public void subtract() {
 
     }
+
+    @Override
+    public void multiply() {
+
+    }
+
+    @Override
+    public void divide() {
+
+    }
+
+    @Override
+    public void percentage() {
+
+    }
 }
