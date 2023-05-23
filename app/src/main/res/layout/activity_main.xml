@@ -101,7 +101,7 @@
                 android:layout_weight="1"
                 android:textSize="20sp"
                 android:background="@drawable/button_shapes"
-                android:text="%"
+                android:text="^"
                 android:textColor="@color/white"/>
 
             <Button
