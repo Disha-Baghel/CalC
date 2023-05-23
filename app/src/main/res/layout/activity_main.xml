@@ -26,19 +26,6 @@
             android:textColor="@color/white"
             android:textSize="30sp" />
 
-<!--        <TextView-->
-<!--            android:id="@+id/expression"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_margin="10dp"-->
-<!--            android:gravity="center|end"-->
-<!--            android:text=""-->
-<!--            android:layout_weight="1"-->
-<!--            android:maxLines="1"-->
-<!--            android:scrollHorizontally="true"-->
-<!--            android:textColor="@color/white"-->
-<!--            android:textSize="50sp" />-->
-
         <HorizontalScrollView android:layout_width="match_parent"
             android:id="@+id/horizontalScrollView"
             android:layout_height="wrap_content"
