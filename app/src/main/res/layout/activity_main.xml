@@ -48,6 +48,7 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/expression"
                 android:scrollHorizontally="true"
+                android:background="@drawable/edittext_no_underline"
                 android:padding="10dp"
                 android:gravity="center|right"
                 android:maxLines="1"
