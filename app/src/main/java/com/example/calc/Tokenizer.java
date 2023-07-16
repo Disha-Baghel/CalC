@@ -1,47 +1,43 @@
 package com.example.calc;
 
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.lang.Character;
 
 public class Tokenizer {
 
-    private ArrayList<Token> tokenList;
-
     private int currentTokenIndex = 0;
     private int index = 0;
 
+    private String input;
+
     public Tokenizer(String input) {
-        tokenList = tokenize(input);
+        this.input = input;
     }
 
-    public Token peek() {
-        return tokenList.get(currentTokenIndex);
+    private char peek() {
+        return input.charAt(index);
     }
 
-    public void advance() {
-        if (!peek().isEOF()) {
-            currentTokenIndex += 1;
-        }
-    }
-
-    public  Token nextToken() {
-        advance();
-        return peek();
+    private void advance() {
+        if (index < input.length())
+            ++index;
     }
 
     private boolean isOperand(char ch) {
         return ch == '+' || ch == '-' || ch == '*' || ch == '/' || ch == '^';
     }
 
-    private ArrayList<Token> tokenize(String input) {
+    public ArrayList<Token> tokenize () {
 
         ArrayList<Token> tokenList = new ArrayList<>();
 
         while(index < input.length()) {
             char ch = input.charAt(index);
             Token token = new Token(0, Token.TokenType.TOKEN_INVALID);
-            if(Character.isDigit(ch)) {
+            if (Character.isDigit(ch)) {
                 token = extractDigit(index);
             } else if (isOperand(ch)) {
                 token = extractOperand(ch);
@@ -66,7 +62,20 @@ public class Tokenizer {
     }
 
     private Token extractDigit(int index) {
+        int start = index;
 
+        while (Character.isDigit(input.charAt(index))){
+            ++index;
+        }
+        if (peek() == '.') {
+            ++index;
+        }
+        while (Character.isDigit(input.charAt(index))) {
+            ++index;
+        }
+        --index;
+        double number = Integer.parseInt(input.substring(start, index));
+        return new Token(number, Token.TokenType.TOKEN_OPERAND);
     }
 
 }
