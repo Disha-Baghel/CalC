@@ -10,6 +10,7 @@ public class Stacks {
 
         switch (symbol) {
 
+            case '(' : return 0;
             case '+' :
             case '-' : return 1;
             case '/' :
@@ -26,11 +27,27 @@ public class Stacks {
 
         for (int i = 0; i < expression.length(); i++) {
             char symbol = expression.charAt(i);
-            int precedence = precedence(symbol);
+            stack.push('(');
 
-            if(precedence == -1) {
+            if(symbol >= 48 && symbol <= 57) {
                 finalExpression = finalExpression + symbol;
             }
+
+            if(symbol == '(' || symbol == '+' || symbol == '-' || symbol == '/' || symbol == 'X' || symbol == '^') {
+                int precedence = precedence(symbol);
+
+                if (precedence > precedence(stack.peek())) {
+                    stack.push(symbol);
+                }
+                else {
+                    while (precedence < precedence(stack.peek())) {
+                        finalExpression = finalExpression + stack.pop();
+                        precedence = precedence(stack.peek());
+                    }
+                }
+            }
+
+
         }
     }
 
