@@ -24,16 +24,16 @@ public class Stacks {
     public void infix_to_postfix(String expression) {
 
         String finalExpression = "";
+        stack.push('(');
 
         for (int i = 0; i < expression.length(); i++) {
             char symbol = expression.charAt(i);
-            stack.push('(');
 
             if(symbol >= 48 && symbol <= 57) {
                 finalExpression = finalExpression + symbol;
             }
 
-            if(symbol == '(' || symbol == '+' || symbol == '-' || symbol == '/' || symbol == 'X' || symbol == '^') {
+            else if(symbol == '(' || symbol == '+' || symbol == '-' || symbol == '/' || symbol == 'X' || symbol == '^') {
                 int precedence = precedence(symbol);
 
                 if (precedence > precedence(stack.peek())) {
