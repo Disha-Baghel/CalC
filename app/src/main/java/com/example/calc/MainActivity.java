@@ -4,9 +4,13 @@ import static android.util.TypedValue.COMPLEX_UNIT_PX;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.text.Editable;
+import android.text.InputType;
 import android.text.TextWatcher;
+import android.util.Log;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.TranslateAnimation;
@@ -16,12 +20,12 @@ import android.widget.HorizontalScrollView;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Stack;
 
 public class MainActivity extends AppCompatActivity{
     Operations operation = new Operations();
     Operations operations = new Operations();
-    Stacks stacks = new Stacks();
 
     HorizontalScrollView horizontalScrollView;
     ListView listView1, listView2;
@@ -42,6 +46,7 @@ public class MainActivity extends AppCompatActivity{
         btnFunctions();
     }
 
+    @SuppressLint("ClickableViewAccessibility")
     private void init(){
 
         horizontalScrollView = findViewById(R.id.horizontalScrollView);
@@ -86,6 +91,18 @@ public class MainActivity extends AppCompatActivity{
             @Override
             public void afterTextChanged(Editable s) {
 
+            }
+        });
+
+        expression.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                int inType = expression.getInputType();
+                expression.setInputType(InputType.TYPE_NULL);
+                expression.onTouchEvent(event);
+                expression.setSelection(expression.getText().length());
+                expression.setInputType(inType);
+                return true;
             }
         });
     }
@@ -242,7 +259,32 @@ public class MainActivity extends AppCompatActivity{
         expression.setTextSize(50);
     }
 
-    public void result(){
-        stacks.infix_to_postfix(expression.getText().toString());
+    public void result() {
+        String input = expression.getText().toString();
+        Tokenizer tokenizer = new Tokenizer(input);
+
+        StringBuilder stringBuilder = new StringBuilder();
+
+        ArrayList<Token> tokenList = tokenizer.tokenize();
+
+        for (Token token: tokenList) {
+            if (token.isEOF() || token.isInvalid())
+                return;
+            switch (token.type) {
+                case TOKEN_ADD: stringBuilder.append("+");
+                    break;
+                case TOKEN_SUBTRACT: stringBuilder.append("-");
+                    break;
+                case TOKEN_MULTIPLY: stringBuilder.append("*");
+                    break;
+                case TOKEN_DIVIDE: stringBuilder.append("/");
+                    break;
+                case TOKEN_EXPONENT: stringBuilder.append("^");
+                    break;
+            }
+        }
+
+        Log.d("Hello", stringBuilder.toString());
+        // stacks.infix_to_postfix(expression.getText().toString());
     }
 }
